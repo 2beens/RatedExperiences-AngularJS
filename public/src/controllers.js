@@ -1,22 +1,8 @@
 angular.module('ratedExpApp')
-    .controller('ExpTypesController', ['$scope', function($scope) {      
-        var maxId = 4;
+    .controller('ExpTypesController', ['$scope', 'expTypesFactory', function($scope, expTypesFactory) {      
+        var maxId = 5;
         
-        $scope.expTypes = 
-        [
-            {
-                "id": 1,
-                "name": {"value": "Beer", "type": "text"}
-            },
-            {
-                "id": 2,
-                "name": {"value": "Cities", "type": "text"}
-            },
-            {
-                "id": 3,
-                "name": {"value": "Cars", "type": "text"},                
-            }
-        ];
+        $scope.expTypes = expTypesFactory.getExperienceTypes();
         
         $scope.addNewExpType = function(newExpTypeName) {
             $scope.expTypes.push({"id": maxId, "name": {"value": newExpTypeName, "type": "text"}});
@@ -26,6 +12,20 @@ angular.module('ratedExpApp')
         $scope.deleteExpType = function(expTypeId) {            
             findAndRemove($scope.expTypes, 'id', expTypeId);
         };
+    }])
+    .controller('ExpTypeController', ['$scope', '$routeParams', 'expTypesFactory', function($scope, $routeParams, expTypesFactory) {
+        var expId = $routeParams.id;
+        
+        $scope.expTypes = expTypesFactory.getExperienceTypes();
+        
+        $scope.expType = null;
+        for(var i in $scope.expTypes) {
+            if($scope.expTypes[i].id === parseInt(expId)) {
+                $scope.expType = $scope.expTypes[i];
+                break;
+            }
+        }
+        
     }]);
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@ angular.module('ratedExpApp', ['ngRoute'])
 				templateUrl: 'views/expTypesList.html' 
 			})
 			.when('/exptype/:id', {
-				controller: 'ExpTypesController',
+				controller: 'ExpTypeController',
 				templateUrl: 'views/expType.html'
 			})
             .otherwise({ redirectTo: '/' });
