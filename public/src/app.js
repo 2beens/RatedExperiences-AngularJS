@@ -5,7 +5,7 @@ angular.module('ratedExpApp', ['ngRoute'])
 				controller: 'ExpTypesController',
 				templateUrl: 'views/expTypesList.html' 
 			})
-			.when('/expType/:id', {
+			.when('/exptype/:id', {
 				controller: 'ExpTypesController',
 				templateUrl: 'views/expType.html'
 			})

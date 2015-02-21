@@ -10,7 +10,7 @@
         </tr>
         <tr ng-repeat="expType in expTypes">
             <td>{{ expType.id }}</td>
-            <td><a href="/exptype/{{ expType.id }}">{{ expType.name.value }}</a></td>
+            <td><a href="#/exptype/{{ expType.id }}">{{ expType.name.value }}</a></td>
             <td>0</td>
             <td><span class="glyphicon glyphicon-remove" ng-click="deleteExpType(expType.id)"></span></button> </td>
         </tr>

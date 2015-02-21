@@ -28,6 +28,7 @@ angular.module('ratedExpApp')
         };
     }]);
 
+///////////////////////////////////////////////////////////////////////////////
 function findAndRemove(array, property, value) {
    $.each(array, function(index, result) {
       if(result[property] == value) {
