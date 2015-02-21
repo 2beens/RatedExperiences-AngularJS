@@ -13,15 +13,37 @@
             <h1>Rated Experiences</h1>
         </div>
         
-        <h4>List of experiences:</h4>
+        <h4>List of experiences:</h4>            
         
-        <ul>
-            <li ng-repeat="expType in expTypes">
-                <p>{{ expType.name.value }}</p>
-            </li>
-        </ul>
+        <div class="row">
+            <table class="col-sm-6 list-table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Experiences</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr ng-repeat="expType in expTypes">
+                    <td>{{ expType.id }}</td>
+                    <td><a href="/exptype/{{ expType.id }}">{{ expType.name.value }}</a></td>
+                    <td>0</td>
+                    <td><span class="glyphicon glyphicon-remove" ng-click="deleteExpType(expType.id)"></span></button> </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="newExpTypeName" placeholder="New experience type name">
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-primary" ng-click="addNewExpType(newExpTypeName)">Add New</button>
+            </div>
+        </div>
+        
     </div>
 
+    <script src="lib/jquery/dist/jquery.js"></script>
 	<script src="lib/angular/angular.min.js"></script>
     <script src="src/controllers.js"></script>
 </body>
