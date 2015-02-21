@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="ratedExpApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Rated Experiences</title>
+    <link rel='stylesheet' href='lib/bootstrap/dist/css/bootstrap.min.css'/>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body ng-controller='MainController'>
+    
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Rated Experiences</h1>
+        </div>
+        
+        <h4>List of experiences:</h4>
+        
+        <ul>
+            <li ng-repeat="expType in expTypes">
+                <p>{{ expType.name.value }}</p>
+            </li>
+        </ul>
+    </div>
+
+	<script src="lib/angular/angular.min.js"></script>
+    <script src="src/controllers.js"></script>
+</body>
+</html>
