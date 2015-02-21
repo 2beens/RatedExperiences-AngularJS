@@ -1,5 +1,5 @@
-angular.module('ratedExpApp', [])
-    .controller('MainController', ['$scope', function($scope) {      
+angular.module('ratedExpApp')
+    .controller('ExpTypesController', ['$scope', function($scope) {      
         var maxId = 4;
         
         $scope.expTypes = 
