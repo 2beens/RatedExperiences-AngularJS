@@ -1,5 +1,5 @@
 angular.module('ratedExpApp')
-    .factory('expTypesFactory', function() {
+    .factory('expTypesFactory', ['$http', function($http) {
         var expTypes = 
         [
             {
@@ -23,6 +23,10 @@ angular.module('ratedExpApp')
         return {
             getExperienceTypes: function() {
                 return expTypes;
+                //return $http.get('http://localhost:8888/contacts');
+            },
+            addExperienceType: function(newExpTypeName) {
+                expTypes.push({"id": expTypes.length + 1, "name": {"value": newExpTypeName, "type": "text"}});
             }
         };
-    });
+    }]);

@@ -1,11 +1,11 @@
 angular.module('ratedExpApp')
-    .controller('ExpTypesController', ['$scope', 'expTypesFactory', function($scope, expTypesFactory) {      
-        var maxId = 5;
+    .controller('ExpTypesController', ['$scope', 'expTypesFactory', 'appSettings', function($scope, expTypesFactory, appSettings) {      
+        $scope.appSettings = appSettings;
         
         $scope.expTypes = expTypesFactory.getExperienceTypes();
         
         $scope.addNewExpType = function(newExpTypeName) {
-            $scope.expTypes.push({"id": maxId, "name": {"value": newExpTypeName, "type": "text"}});
+            expTypesFactory.addExperienceType(newExpTypeName);
             $scope.newExpTypeName = null;
         };
         
@@ -13,6 +13,7 @@ angular.module('ratedExpApp')
             findAndRemove($scope.expTypes, 'id', expTypeId);
         };
     }])
+
     .controller('ExpTypeController', ['$scope', '$routeParams', 'expTypesFactory', function($scope, $routeParams, expTypesFactory) {
         var expId = $routeParams.id;
         
