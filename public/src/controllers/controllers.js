@@ -1,5 +1,5 @@
 angular.module('ratedExpApp')
-    .controller('ExpTypesController', ['$scope', 'expTypesFactory', 'appSettings', function($scope, expTypesFactory, appSettings) {      
+    .controller('ExpTypesController', ['$scope', 'expTypesFactory', 'appSettings', '$log', function($scope, expTypesFactory, appSettings, $log) {      
         $scope.appSettings = appSettings;
         
         function init() {
@@ -8,8 +8,10 @@ angular.module('ratedExpApp')
                     $scope.expTypes = expTypes;
                 })
                 .error(function(data, status, headers, config) {
-                    //TODO: handle error
+                    //  handle error
                     $scope.expTypes = {};
+                    $scope.error = 'Status code: ' + status + ', Error: ' + data.error;
+                    $log.error($scope.error);
                 });
         }
         
@@ -25,7 +27,7 @@ angular.module('ratedExpApp')
         };
     }])
 
-    .controller('ExpTypeController', ['$scope', '$routeParams', 'expTypesFactory', function($scope, $routeParams, expTypesFactory) {
+    .controller('ExpTypeController', ['$scope', '$routeParams', 'expTypesFactory', '$log', function($scope, $routeParams, expTypesFactory, $log) {
         var expId = $routeParams.id;
         
         function init() {
@@ -34,8 +36,10 @@ angular.module('ratedExpApp')
                     $scope.expType = expType;
                 })
                 .error(function(data, status, headers, config) {
-                    //TODO: handle error
+                    //  handle error
                     $scope.expType = {};
+                    $scope.error = 'Status code: ' + status + ', Error: ' + data.error;
+                    $log.error($scope.error);
                 });
         }
         

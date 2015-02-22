@@ -13,7 +13,7 @@ app.use(express.static('./public'));
 ///////     GET ALL EXP TYPES   ///////////////////////////////////
 app.get('/exptypes', function(req, res) {
     console.log('Request for all experience types');
-    res.json(expTypes);
+    res.status(200).json(expTypes);    
 });
 
 ///////     GET ALL EXP TYPE BY ID   //////////////////////////////
@@ -21,14 +21,19 @@ app.get('/exptype/:id', function(req, res) {
     var expTypeId = parseInt(req.params.id);
     console.log('Request for experience type id: ' + expTypeId);
                 
-    var expType = [];
+    var expType = null;
     for(var i = 0, len = expTypes.length; i < len; i++) {
         if(expTypes[i].id === expTypeId) {
             expType = expTypes[i];
             break;
         }
     }
-    res.json(expType);
+    
+    if(expType === null) {
+        res.json(404, { error: 'Experience type ID: ' + expTypeId + ' cannot be found.'});
+    }else{
+        res.status(200).json(expType);
+    }
 });
 
 
