@@ -8,9 +8,10 @@ angular.module('ratedExpApp')
                 return $http.get('/exptype/' + id);
             },
             addExperienceType: function(newExpTypeName) {
-                //expTypes.push({"id": expTypes.length + 1, 
-                //               "name": {"value": newExpTypeName, "type": "text"}});
-                //should be a call to node server
+                return $http.post('/exptype/new', { name: newExpTypeName });
+            },
+            removeExperienceType: function(expTypeId) {
+                return $http.post('/exptype/delete', { id: expTypeId });   
             }
         };
     }]);
