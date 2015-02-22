@@ -2,7 +2,18 @@ angular.module('ratedExpApp')
     .controller('ExpTypesController', ['$scope', 'expTypesFactory', 'appSettings', function($scope, expTypesFactory, appSettings) {      
         $scope.appSettings = appSettings;
         
-        $scope.expTypes = expTypesFactory.getExperienceTypes();
+        function init() {
+            expTypesFactory.getExperienceTypes()
+                .success(function(expTypes) {
+                    $scope.expTypes = expTypes;
+                })
+                .error(function(data, status, headers, config) {
+                    //TODO: handle error
+                    $scope.expTypes = {};
+                });
+        }
+        
+        init();
         
         $scope.addNewExpType = function(newExpTypeName) {
             expTypesFactory.addExperienceType(newExpTypeName);
@@ -17,16 +28,18 @@ angular.module('ratedExpApp')
     .controller('ExpTypeController', ['$scope', '$routeParams', 'expTypesFactory', function($scope, $routeParams, expTypesFactory) {
         var expId = $routeParams.id;
         
-        $scope.expTypes = expTypesFactory.getExperienceTypes();
-        
-        $scope.expType = null;
-        for(var i in $scope.expTypes) {
-            if($scope.expTypes[i].id === parseInt(expId)) {
-                $scope.expType = $scope.expTypes[i];
-                break;
-            }
+        function init() {
+            expTypesFactory.getExperienceType(expId)
+                .success(function(expType) {
+                    $scope.expType = expType;
+                })
+                .error(function(data, status, headers, config) {
+                    //TODO: handle error
+                    $scope.expType = {};
+                });
         }
         
+        init();        
     }]);
 
 ///////////////////////////////////////////////////////////////////////////////
