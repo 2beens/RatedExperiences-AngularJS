@@ -38,7 +38,10 @@ app.get('/exptype/:id', function(req, res) {
 
 
 ///////     CREATE NEW EXP TYPE   /////////////////////////////////
-//app.get(
+//app.get('/expType/new
+
+//expTypes.push({"id": expTypes.length + 1, 
+                //               "name": {"value": newExpTypeName, "type": "text"}});
 
 ///////     DELETE EXP TYPE   /////////////////////////////////////
 //app.get(
